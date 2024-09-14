@@ -1,47 +1,28 @@
-class Punto {
-    x: number;
-    y: number;
-
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
+import { Distancia } from "./calcularDistancia";
+ 
+class Triangulo extends Distancia{
+    protected x3: number;
+    protected y3: number;
+    constructor(x1:number,y1:number,x2:number,y2:number,x3:number,y3:number) {
+        super(x1,y1,x2,y2)
+        this.x3 =x3;
+        this.y3 = y3;
     }
-
-    calcularDistancia(otroPunto: Punto): number {
-        const dx = this.x - otroPunto.x;
-        const dy = this.y - otroPunto.y;
-        return Math.sqrt(dx * dx + dy * dy);
-    }
-
-    imprimir() {
-        console.log(`Punto en coordenadas (${this.x}, ${this.y})`);
-    }
-}
-
-class Triangulo {
-    puntoA: Punto;
-    puntoB: Punto;
-    puntoC: Punto;
-
-    constructor(puntoA: Punto, puntoB: Punto, puntoC: Punto) {
-        this.puntoA = puntoA;
-        this.puntoB = puntoB;
-        this.puntoC = puntoC;
-    }
-
-
-    imprimir() {
-        console.log("Triángulo formado por:");
-        this.puntoA.imprimir();
-        this.puntoB.imprimir();
-        this.puntoC.imprimir();
+ 
+    public estriangulo() {
+        const distancia1 = this.dospuntos(this.x1, this.y1, this.x2, this.y2);        
+        const distancia2 = this.dospuntos(this.x2, this.y2, this.x3, this.y3);
+        const distancia3 = this.dospuntos(this.x3, this.y3, this.x1, this.y1);
+       
+        if ((distancia1 + distancia2) > distancia3 &&
+            (distancia2 + distancia3) > distancia2 &&
+            (distancia2 + distancia3) > distancia1)
+             console.log("Es un triángulo");
+        else
+             console.log("No es un triángulo");
     }
 }
-
-let punto1 = new Punto(3, 4);
-let punto2 = new Punto(7, 1);
-let punto3 = new Punto(5, 8);
-
-let triangulo = new Triangulo(punto1, punto2, punto3);
-
-triangulo.imprimir();
+const trian = new Triangulo(-4,-3,2,-3,1,-6)
+trian.estriangulo()
+ 
+ 
