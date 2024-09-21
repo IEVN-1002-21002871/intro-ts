@@ -22,7 +22,7 @@ class Triangulo extends Distancia{
              console.log("No es un triángulo");
     }
 }
-const trian = new Triangulo(-4,-3,2,-3,1,-6)
+const trian = new Triangulo(-4,-3,2,-3,1,-3)
 trian.estriangulo()
  
  
